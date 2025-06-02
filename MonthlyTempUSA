@@ -1,0 +1,40 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample data (from a Excel file)
+data = {
+    'Month': ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December'],
+    'Temperature': [5, 7, 10, 15, 20, 25, 30, 29, 24, 18, 10, 6]
+}
+
+df = pd.DataFrame(data)
+
+# Set up the dashboard layout
+fig, axs = plt.subplots(2, 2, figsize=(12, 8))
+fig.suptitle('Average Monthly Temperatures Dashboard', fontsize=16)
+
+# Line chart
+axs[0, 0].plot(df['Month'], df['Temperature'], marker='o', color='blue')
+axs[0, 0].set_title('Line Chart')
+axs[0, 0].set_xticklabels(df['Month'], rotation=45)
+axs[0, 0].set_ylabel('°C')
+
+# Bar chart
+axs[0, 1].bar(df['Month'], df['Temperature'], color='skyblue')
+axs[0, 1].set_title('Bar Chart')
+axs[0, 1].set_xticklabels(df['Month'], rotation=45)
+axs[0, 1].set_ylabel('°C')
+
+# Scatter plot
+axs[1, 0].scatter(df['Month'], df['Temperature'], color='green')
+axs[1, 0].set_title('Scatter Plot')
+axs[1, 0].set_xticklabels(df['Month'], rotation=45)
+axs[1, 0].set_ylabel('°C')
+
+# Hide unused subplot
+axs[1, 1].axis('off')
+
+# Adjust layout
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
